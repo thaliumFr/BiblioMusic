@@ -1,0 +1,306 @@
+:root{
+    --main: #d81818;
+    --main-active: #890606;
+    --grey: #1a1a1a;
+    --spacing: 1em;
+}
+
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    scroll-behavior: smooth;
+    scroll-padding-top: 5em;
+}
+body{
+    margin: 0;
+}
+section, header{
+    margin: calc(var(--spacing)*2) 10%;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing)*2);
+    img{
+        flex: 1;
+    }
+    div {
+        flex: 3;
+        min-width: 375px;
+        
+    }
+}
+
+nav{
+    display: flex;
+    position: sticky;
+    top: -1px;
+    flex-direction: row;
+    flex: 1;
+    gap: var(--spacing);
+    z-index: 999;
+
+    background-color: var(--grey);
+    color: white;
+    padding: var(--spacing);
+    margin-bottom: var(--spacing);
+
+    border-radius: 0 0 var(--spacing) var(--spacing);
+    
+    .link{
+        height: fit-content;
+        margin: auto 0;
+        color: var(--main);
+    }
+
+    .title{
+        font-size: 1.5em;
+        color: white;
+    }
+
+    .dropdown{
+        position: relative;
+        display: block;
+        
+        &:hover, &:focus-within{
+            .dropmenu{
+                display: flex;
+            }
+        }
+        .dropmenu{
+            --dropSpacing : calc(var(--spacing) * 1.5);
+
+            border-radius: var(--spacing);
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: calc(var(--dropSpacing) * -1);
+            width: max-content;
+            flex-direction: column;
+            gap: var(--dropSpacing);
+            background-color: var(--main);
+            padding: var(--dropSpacing);
+
+            .link{
+                position: relative;
+                color: white;
+                width: fit-content;
+                &:hover{
+                    &::after{
+                        transform: scaleX(1);
+                    }
+                }
+                &::after{
+                    transition: all .1s;
+                    position: absolute;
+                    content: "";
+                    bottom: -3px;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: white;
+                    transform-origin: left;
+                    transform: scaleX(0);
+                }
+            }
+        }
+    }
+}
+
+a{
+    text-decoration: none;
+    color: var(--main);
+    &:hover{
+        color: var(--main-active);
+        text-decoration: none;
+    }
+}
+
+img{
+    border-radius: 15px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: 0 25%;
+    padding: var(--spacing);
+    border-radius: var(--spacing);
+    background-color: #0000000c;
+
+    label{
+        font-weight: 700;
+    }
+
+    input, textarea{
+        border-radius: calc(var(--spacing)*0.5);
+        padding: var(--spacing);
+
+        &[type="submit"]{
+            width: fit-content;
+            margin: 0 auto;
+            background-color: var(--main);
+            transition: all 0.5s;
+            color: white;
+            border: none;
+
+            &:hover{
+                background-color: var(--main-active);
+            }
+        }
+    }
+
+    border: solid 3px var(--grey);
+}
+
+ul{
+    
+    padding-inline-start: 0;
+    min-width: 375px;
+}
+
+li{
+    list-style: none;
+
+    margin-block: calc(var(--spacing) * 4);
+}
+
+li > ul  {
+    margin-top: 3em;
+    & > li {
+        list-style: disc;
+        margin: var(--spacing);
+        width: fit-content;
+    }
+    
+}
+
+.card{
+    border-radius: 1em;
+    padding: calc(var(--spacing) * 2);
+    position: relative;
+    color: #fff;
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing) * 4);
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .5),
+                inset 5px 5px 10px 5px rgba(255, 255, 255, 0.25);
+
+    z-index: 0;
+
+    transition: all .25s ease-out;
+    &:hover{
+        transform: scale(1.025);
+    }
+
+    &::before{
+        content: "";
+        pointer-events: none;
+        z-index: -1;
+        clear: both;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: linear-gradient(#00000044,#00000044 50%, #000000);
+        border-radius: inherit;
+        backdrop-filter: blur(15px);
+    }
+
+    &.mercury{
+        background-image: url("https://i.scdn.co/image/ab67616d00001e02fc915b69600dce2991a61f13");
+    }
+
+    &.evolve{
+        background-image: url("https://i.scdn.co/image/ab67616d00001e025675e83f707f1d7271e5cf8a");
+    }
+
+    &.NV{
+        background-image: url("https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737");
+    }
+
+    &.origins{
+        background-image: url("https://i.scdn.co/image/ab67616d00001e02da6f73a25f4c79d0e6b4a8bd");
+    }
+}
+
+.PlayButton{
+    display: block;
+    padding: var(--spacing);
+    background-color: var(--main);
+    border-radius: 1em;
+    width: fit-content;
+    height: fit-content;
+    color: white;
+    margin-block-start: calc(var(--spacing)*4);
+    z-index: 1;
+    
+    pointer-events: fill;
+
+    overflow: hidden;
+
+	transition: all 0.1s ease-in-out;
+
+	position: relative;
+
+    &::before {
+		content: "";
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		left: -110%;
+		top: 0;
+        background-color: #fff;
+
+		transition: all 0.2s ease-in;
+
+		transform: skew(-20deg);
+
+		&:hover {
+			&::before {
+				left: 110%;
+			}
+		}
+	}
+
+	&:hover {
+		transform: scale(1.05);
+        color: white;
+
+		&::before {
+			left: 110%;
+		}
+	}
+
+}
+
+footer{
+    margin-block-start: var(--spacing);
+    padding: calc(var(--spacing) * 3 );
+    background-color: var(--grey);
+    color: white;
+    border-radius: var(--spacing) var(--spacing) 0 0;
+}
+
+
+@media screen and (max-width: 1005px) {
+    .card{
+        width: 375px;
+        margin: 2em auto;
+        &>*{
+            margin: 0 auto;
+        }
+    }
+}
+
